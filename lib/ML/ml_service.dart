@@ -6,7 +6,8 @@ class MLService {
   // Update this URL:
   // Android Emulator: http://10.0.2.2:5000
   // Physical Device: http://YOUR_COMPUTER_IP:5000
-  static const String baseUrl = 'http://localhost:5000';
+  // For physical device, find your IP: Windows (ipconfig) or Mac/Linux (ifconfig)
+  static const String baseUrl = 'http://10.0.2.2:5000'; // Change this!
 
   /// Get all insights (expenses + stocks) in one call
   static Future<Map<String, dynamic>> getAllInsights(
