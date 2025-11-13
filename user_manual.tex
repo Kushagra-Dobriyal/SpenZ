@@ -1,0 +1,747 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+
+% Page margins
+\geometry{margin=1in}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={SpenZ User Manual},
+    pdfauthor={SpenZ Team}
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{SpenZ User Manual}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{Version 1.0}
+
+% Title formatting
+\titleformat{\section}
+{\Large\bfseries\color{blue!70!black}}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\large\bfseries\color{blue!50!black}}
+{\thesubsection}{1em}{}
+
+% Title page
+\title{
+    \vspace{2cm}
+    \Huge\textbf{SpenZ}\\
+    \vspace{0.5cm}
+    \Large Personal Expense Tracker\\
+    \vspace{0.5cm}
+    \large User Manual
+    \vspace{2cm}
+}
+
+\author{
+    \Large Complete Guide to Using SpenZ\\
+    \vspace{1cm}
+    \normalsize Your Guide to Managing Personal Finances
+}
+
+\date{\today}
+
+\begin{document}
+
+% Title page
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Introduction
+\section{Welcome to SpenZ}
+
+\subsection{What is SpenZ?}
+SpenZ is a user-friendly mobile application designed to help you track and manage your personal expenses effortlessly. Whether you want to monitor your daily spending, track your income, or analyze your financial habits, SpenZ provides all the tools you need in one beautiful, easy-to-use interface.
+
+\subsection{Getting Started}
+This manual will guide you through every feature of SpenZ, from basic setup to advanced usage. By the end of this guide, you'll be able to:
+\begin{itemize}
+    \item Add and manage your transactions
+    \item View your balance and spending patterns
+    \item Customize categories and settings
+    \item Understand your financial habits through visual analytics
+\end{itemize}
+
+\subsection{System Requirements}
+SpenZ works on:
+\begin{itemize}
+    \item Android devices (Android 5.0 and above)
+    \item iOS devices (iOS 12.0 and above)
+    \item Web browsers (Chrome, Firefox, Safari, Edge)
+    \item Windows, macOS, and Linux computers
+\end{itemize}
+
+% Installation
+\section{Installation and First Launch}
+
+\subsection{Installing SpenZ}
+\begin{enumerate}
+    \item Download SpenZ from your device's app store or visit the official website
+    \item Tap the install button and wait for the installation to complete
+    \item Once installed, locate the SpenZ icon on your home screen or app drawer
+    \item Tap the icon to launch the application
+\end{enumerate}
+
+\subsection{First Launch}
+When you first open SpenZ:
+\begin{itemize}
+    \item You'll see the home screen with a balance of ₹0.00
+    \item The app is ready to use immediately - no account creation required
+    \item All your data is stored locally on your device for privacy
+    \item You can start adding transactions right away
+\end{itemize}
+
+% Navigation
+\section{Navigation Guide}
+
+\subsection{Main Navigation Bar}
+At the bottom of the screen, you'll find three main navigation options:
+
+\begin{itemize}
+    \item \textbf{Home} - Returns you to the main dashboard
+    \item \textbf{Add Transaction} - Large purple button in the center to quickly add new transactions
+    \item \textbf{Account} - Access your account settings and profile
+\end{itemize}
+
+\subsection{Top Bar Elements}
+\begin{itemize}
+    \item \textbf{Settings Icon} (Gear) - Located on the top left, opens the settings menu
+    \item \textbf{App Title} - "SpenZ" displayed in the center
+    \item \textbf{Profile Icon} - Located on the top right, shows your profile
+\end{itemize}
+
+% Home Screen
+\section{Home Screen}
+
+\subsection{Overview}
+The home screen is your financial dashboard, providing a complete overview of your finances at a glance.
+
+\subsection{Balance Card}
+\begin{itemize}
+    \item \textbf{Location}: Prominent blue card at the top of the screen
+    \item \textbf{Displays}: Your current balance in large, easy-to-read numbers
+    \item \textbf{Action}: Tap the arrow icon on the right to view detailed balance overview
+    \item \textbf{Updates}: Balance automatically updates when you add or remove transactions
+\end{itemize}
+
+\textbf{Understanding Your Balance:}
+\begin{equation}
+\text{Balance} = \text{Total Income} - \text{Total Expenses}
+\end{equation}
+
+\subsection{Weekly Spending Chart}
+\begin{itemize}
+    \item \textbf{Location}: Below the balance card
+    \item \textbf{Purpose}: Visualizes your spending patterns over the past week
+    \item \textbf{Features}:
+    \begin{itemize}
+        \item Bar chart showing expenses by day of week
+        \item Automatically scales to show your spending range
+        \item Color-coded bars for easy identification
+    \end{itemize}
+    \item \textbf{Reading the Chart}:
+    \begin{itemize}
+        \item X-axis: Days of the week (0-6)
+        \item Y-axis: Amount spent (in ₹)
+        \item Bar height: Total spending for that day
+    \end{itemize}
+\end{itemize}
+
+\subsection{Transaction History}
+\begin{itemize}
+    \item \textbf{Location}: Below the chart
+    \item \textbf{Displays}: All your recent transactions in reverse chronological order
+    \item \textbf{Information Shown}:
+    \begin{itemize}
+        \item Category icon (color-coded)
+        \item Transaction name/description
+        \item Date and time
+        \item Transaction type (Credited/Debited)
+        \item Amount with appropriate sign (+/-)
+    \end{itemize}
+    \item \textbf{Color Coding}:
+    \begin{itemize}
+        \item \textcolor{green}{Green} - Income transactions
+        \item \textcolor{blue}{Blue} - Expense transactions
+    \end{itemize}
+\end{itemize}
+
+% Adding Transactions
+\section{Adding Transactions}
+
+\subsection{Accessing the Add Transaction Screen}
+You can add a new transaction in two ways:
+\begin{enumerate}
+    \item Tap the large purple \textbf{Add Transaction} button in the center of the bottom navigation bar
+    \item Navigate to the Add Transaction page from the menu
+\end{enumerate}
+
+\subsection{Step-by-Step: Adding an Expense}
+\begin{enumerate}
+    \item \textbf{Select Transaction Type}
+    \begin{itemize}
+        \item Tap the "Expense" option (default selection)
+        \item The button will be highlighted to show it's selected
+    \end{itemize}
+    
+    \item \textbf{Enter Transaction Title}
+    \begin{itemize}
+        \item Tap the "Title" field
+        \item Type a descriptive name (e.g., "Groceries", "Coffee", "Movie Ticket")
+        \item This helps you identify the transaction later
+    \end{itemize}
+    
+    \item \textbf{Enter Amount}
+    \begin{itemize}
+        \item Tap the "Expense" field
+        \item Enter the amount spent (numbers only)
+        \item The amount must be greater than 0
+        \item Example: Enter "500" for ₹500.00
+    \end{itemize}
+    
+    \item \textbf{Select Category} (Optional)
+    \begin{itemize}
+        \item Choose from available categories displayed as chips
+        \item Available categories include: Education, Food, Travel, Miscellaneous
+        \item You can add more categories in Settings
+        \item Tap a category chip to select it (it will be highlighted)
+    \end{itemize}
+    
+    \item \textbf{Submit Transaction}
+    \begin{itemize}
+        \item Tap the green "Add Transaction" button at the bottom
+        \item A confirmation dialog will appear
+        \item Tap "OK" to return to the home screen
+        \item Your balance will update automatically
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Step-by-Step: Adding Income}
+The process is identical to adding expenses, with one difference:
+\begin{enumerate}
+    \item Select "Income" instead of "Expense" at the top
+    \item Enter the income amount
+    \item Follow the same steps for title and category
+    \item Submit the transaction
+\end{enumerate}
+
+\subsection{Transaction Validation}
+The app will prevent you from submitting invalid transactions:
+\begin{itemize}
+    \item \textbf{Empty Title}: You must enter a transaction name
+    \item \textbf{Empty Amount}: You must enter an amount
+    \item \textbf{Invalid Amount}: Only numbers are accepted
+    \item \textbf{Zero Amount}: Amount must be greater than 0
+\end{itemize}
+
+\subsection{Tips for Adding Transactions}
+\begin{itemize}
+    \item Add transactions immediately after making a purchase for accuracy
+    \item Use descriptive titles to make searching easier later
+    \item Select appropriate categories to improve analytics
+    \item Don't worry about entering the exact time - it's recorded automatically
+\end{itemize}
+
+% Balance Overview
+\section{Balance Overview}
+
+\subsection{Accessing Balance Overview}
+\begin{enumerate}
+    \item From the home screen, locate the balance card
+    \item Tap the arrow icon on the right side of the balance card
+    \item You'll be taken to the detailed Balance Overview screen
+\end{enumerate}
+
+\subsection{Balance Left Card}
+\begin{itemize}
+    \item \textbf{Current Balance}: Displays your total available balance
+    \item \textbf{Update Status}: Shows when the balance was last updated
+    \item \textbf{Balance Health}: Circular progress indicator showing financial health percentage
+    \begin{itemize}
+        \item Higher percentage = Better financial health
+        \item Color-coded for quick assessment
+    \end{itemize}
+\end{itemize}
+
+\subsection{Last 7 Days Analytics}
+\begin{itemize}
+    \item \textbf{Chart View}: Bar chart showing spending over the past week
+    \item \textbf{Statistics}:
+    \begin{itemize}
+        \item \textbf{Low}: Lowest spending day
+        \item \textbf{Avg}: Average daily spending
+        \item \textbf{High (p95)}: 95th percentile of spending
+    \end{itemize}
+    \item \textbf{Filter Toggle}: "Expenses only" option to filter the view
+\end{itemize}
+
+\subsection{AI Insights}
+\begin{itemize}
+    \item \textbf{Purpose}: Provides intelligent financial advice based on your spending patterns
+    \item \textbf{Features}:
+    \begin{itemize}
+        \item Personalized spending analysis
+        \item Savings recommendations
+        \item Spending habit insights
+    \end{itemize}
+    \item \textbf{Tips}: Actionable advice to improve your financial health
+\end{itemize}
+
+\subsection{Number Trivia}
+\begin{itemize}
+    \item \textbf{Feature}: Fun facts about numbers related to your balance
+    \item \textbf{Usage}: Tap to load trivia about your current balance amount
+    \item \textbf{Refresh}: Use the refresh button if trivia fails to load
+\end{itemize}
+
+% Settings
+\section{Settings and Customization}
+
+\subsection{Accessing Settings}
+\begin{enumerate}
+    \item From the home screen, tap the gear icon in the top left corner
+    \item The Settings screen will open
+\end{enumerate}
+
+\subsection{Common Settings}
+
+\subsubsection{Currency}
+\begin{itemize}
+    \item \textbf{Purpose}: Set your preferred currency
+    \item \textbf{Current Status}: Shows "None" if not set
+    \item \textbf{Usage}: Tap to select your currency from available options
+\end{itemize}
+
+\subsubsection{Categories}
+\begin{itemize}
+    \item \textbf{Purpose}: Manage your transaction categories
+    \item \textbf{Access}: Tap "Categories" to open category management
+    \item \textbf{Features}:
+    \begin{itemize}
+        \item Add new categories
+        \item Remove existing categories
+        \item Edit category names
+    \end{itemize}
+    \item \textbf{Default Categories}: Education, Food, Travel, Miscellaneous
+\end{itemize}
+
+\subsection{Security Settings}
+
+\subsubsection{Use Fingerprint}
+\begin{itemize}
+    \item \textbf{Purpose}: Enable biometric authentication for app access
+    \item \textbf{Usage}: Toggle the switch to enable/disable fingerprint login
+    \item \textbf{Requirements}: Your device must support fingerprint scanning
+    \item \textbf{Security}: Adds an extra layer of protection to your financial data
+\end{itemize}
+
+\subsubsection{Change Password}
+\begin{itemize}
+    \item \textbf{Purpose}: Set or change your app password
+    \item \textbf{Status}: Shows current password protection status
+    \item \textbf{Usage}: Tap to set or modify your password
+\end{itemize}
+
+\subsection{Data Management}
+
+\subsubsection{Erase All Data}
+\begin{itemize}
+    \item \textbf{Warning}: This is a destructive action
+    \item \textbf{Purpose}: Permanently delete all transactions and settings
+    \item \textbf{Usage}: Tap to confirm deletion of all app data
+    \item \textbf{Caution}: This action cannot be undone
+    \item \textbf{When to Use}: Starting fresh or removing all personal data
+\end{itemize}
+
+\subsection{Social Settings}
+
+\subsubsection{GitHub}
+\begin{itemize}
+    \item \textbf{Purpose}: Access the SpenZ GitHub repository
+    \item \textbf{Actions}: Star and share the repository
+    \item \textbf{Usage}: Tap to open the GitHub page in your browser
+    \item \textbf{Benefits}: Stay updated with latest features and contribute to the project
+\end{itemize}
+
+% Managing Categories
+\section{Managing Categories}
+
+\subsection{Why Categories Matter}
+Categories help you:
+\begin{itemize}
+    \item Organize your transactions
+    \item Analyze spending by type
+    \item Identify spending patterns
+    \item Make better financial decisions
+\end{itemize}
+
+\subsection{Accessing Category Management}
+\begin{enumerate}
+    \item Open Settings (gear icon)
+    \item Tap "Categories" under Common settings
+    \item You'll see the category management screen
+\end{enumerate}
+
+\subsection{Adding a New Category}
+\begin{enumerate}
+    \item In the Categories screen, look for the "Add Category" option
+    \item Tap to add a new category
+    \item Enter the category name
+    \item Save the category
+    \item The new category will appear in transaction forms
+\end{enumerate}
+
+\subsection{Removing a Category}
+\begin{enumerate}
+    \item In the Categories screen, find the category you want to remove
+    \item Tap the delete/remove icon next to the category
+    \item Confirm the deletion
+    \item Note: Transactions using this category will remain, but the category won't be available for new transactions
+\end{enumerate}
+
+\subsection{Smart Category Icons}
+SpenZ automatically assigns icons to categories based on keywords:
+\begin{itemize}
+    \item \textbf{Food-related} (food, juice, grocery): Fast food icon
+    \item \textbf{Education} (education, school, college, xerox, pen): School icon
+    \item \textbf{Entertainment} (netflix, spotify, prime, hotstar, ott): Subscription icon
+    \item \textbf{Other}: Default category icon
+\end{itemize}
+
+% Understanding Your Data
+\section{Understanding Your Financial Data}
+
+\subsection{Reading Transaction History}
+Each transaction in your history shows:
+\begin{itemize}
+    \item \textbf{Icon}: Category-based icon with color coding
+    \item \textbf{Name}: Transaction description you entered
+    \item \textbf{Time}: Hour and minute (24-hour format)
+    \item \textbf{Date}: Day.Month.Year (last two digits)
+    \item \textbf{Type}: "Credited" for income, "Debited" for expenses
+    \item \textbf{Amount}: With + sign for income, - sign for expenses
+\end{itemize}
+
+\subsection{Understanding Balance Changes}
+Your balance changes based on:
+\begin{itemize}
+    \item \textbf{Adding Income}: Balance increases
+    \item \textbf{Adding Expenses}: Balance decreases
+    \item \textbf{Deleting Transactions}: Balance adjusts accordingly
+\end{itemize}
+
+\subsection{Weekly Spending Analysis}
+The weekly chart helps you:
+\begin{itemize}
+    \item Identify high-spending days
+    \item Spot spending patterns
+    \item Plan future expenses
+    \item Track progress toward spending goals
+\end{itemize}
+
+\subsection{Balance Health Indicator}
+The balance health percentage indicates:
+\begin{itemize}
+    \item \textbf{High Percentage (70-100\%)}: Excellent financial health
+    \item \textbf{Medium Percentage (40-69\%)}: Good financial health
+    \item \textbf{Low Percentage (0-39\%)}: Needs attention - consider reducing expenses
+\end{itemize}
+
+% Tips and Best Practices
+\section{Tips and Best Practices}
+
+\subsection{Regular Transaction Entry}
+\begin{itemize}
+    \item Add transactions immediately after making purchases
+    \item Set a daily reminder to update your expenses
+    \item Review transactions weekly to ensure accuracy
+    \item Don't let transactions pile up - it becomes harder to remember details
+\end{itemize}
+
+\subsection{Effective Categorization}
+\begin{itemize}
+    \item Use specific, meaningful category names
+    \item Create categories that match your spending habits
+    \item Don't create too many categories - 5-10 is usually sufficient
+    \item Review and consolidate categories periodically
+\end{itemize}
+
+\subsection{Maintaining Accurate Balance}
+\begin{itemize}
+    \item Always verify amounts before submitting
+    \item Double-check income entries
+    \item Review your balance regularly
+    \item Reconcile with bank statements monthly
+\end{itemize}
+
+\subsection{Privacy and Security}
+\begin{itemize}
+    \item Enable fingerprint authentication for security
+    \item Set a strong password if available
+    \item Remember: All data is stored locally on your device
+    \item Your financial information never leaves your device
+\end{itemize}
+
+\subsection{Getting the Most from Analytics}
+\begin{itemize}
+    \item Check the weekly chart regularly to spot trends
+    \item Pay attention to AI insights and recommendations
+    \item Use balance health indicator to track financial wellness
+    \item Review spending statistics to identify areas for improvement
+\end{itemize}
+
+% Troubleshooting
+\section{Troubleshooting}
+
+\subsection{Common Issues and Solutions}
+
+\subsubsection{Balance Shows Incorrect Amount}
+\begin{itemize}
+    \item \textbf{Cause}: Transactions may not have been saved properly
+    \item \textbf{Solution}: 
+    \begin{enumerate}
+        \item Check your transaction history
+        \item Verify all transactions are recorded
+        \item Re-add any missing transactions
+        \item The balance will recalculate automatically
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Chart Not Displaying}
+\begin{itemize}
+    \item \textbf{Cause}: No transactions recorded yet or insufficient data
+    \item \textbf{Solution}: 
+    \begin{enumerate}
+        \item Add at least one transaction
+        \item Wait a moment for the chart to update
+        \item Refresh the screen if needed
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Cannot Add Transaction}
+\begin{itemize}
+    \item \textbf{Check}: Ensure all required fields are filled
+    \item \textbf{Verify}: Amount is greater than 0
+    \item \textbf{Solution}: 
+    \begin{enumerate}
+        \item Check for error messages
+        \item Ensure title field is not empty
+        \item Verify amount is a valid number
+        \item Try closing and reopening the app
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Categories Not Appearing}
+\begin{itemize}
+    \item \textbf{Cause}: Categories may have been deleted or not saved
+    \item \textbf{Solution}: 
+    \begin{enumerate}
+        \item Go to Settings → Categories
+        \item Add the missing categories
+        \item Return to Add Transaction screen
+        \item Categories should now appear
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{App Crashes or Freezes}
+\begin{itemize}
+    \item \textbf{Solution}: 
+    \begin{enumerate}
+        \item Close the app completely
+        \item Restart your device
+        \item Reopen SpenZ
+        \item If problem persists, reinstall the app (your data is safe - it's stored locally)
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Data Appears to be Lost}
+\begin{itemize}
+    \item \textbf{Note}: SpenZ stores data locally on your device
+    \item \textbf{Check}: 
+    \begin{enumerate}
+        \item Ensure you're using the same device
+        \item Data doesn't sync across devices
+        \item If you uninstalled the app, data may be lost
+    \end{enumerate}
+    \item \textbf{Prevention}: Regularly back up important financial data
+\end{itemize}
+
+% FAQ
+\section{Frequently Asked Questions}
+
+\subsection{General Questions}
+
+\textbf{Q: Is SpenZ free to use?}\\
+A: Yes, SpenZ is completely free to use with no hidden costs or subscriptions.
+
+\textbf{Q: Do I need an internet connection?}\\
+A: No, SpenZ works completely offline. All data is stored locally on your device.
+
+\textbf{Q: Is my financial data secure?}\\
+A: Yes, all your data is stored locally on your device and never transmitted to any server. Your privacy is our priority.
+
+\textbf{Q: Can I use SpenZ on multiple devices?}\\
+A: Currently, SpenZ stores data locally on each device. Data doesn't sync across devices automatically.
+
+\textbf{Q: Can I export my transaction data?}\\
+A: This feature may be available in future updates. Currently, data is stored locally in the app.
+
+\subsection{Transaction Questions}
+
+\textbf{Q: Can I edit a transaction after adding it?}\\
+A: Currently, you can delete and re-add transactions. Edit functionality may be added in future updates.
+
+\textbf{Q: What happens if I delete a transaction?}\\
+A: The transaction is permanently removed and your balance is recalculated automatically.
+
+\textbf{Q: Can I add transactions for past dates?}\\
+A: Currently, transactions use the current date and time. Historical date entry may be added in future updates.
+
+\textbf{Q: Is there a limit to how many transactions I can add?}\\
+A: No, there's no limit to the number of transactions you can record.
+
+\subsection{Balance and Analytics Questions}
+
+\textbf{Q: How is my balance calculated?}\\
+A: Balance = Total Income - Total Expenses. It's calculated automatically from all your transactions.
+
+\textbf{Q: Why does my balance seem incorrect?}\\
+A: Check your transaction history to ensure all transactions are recorded correctly. The balance updates automatically.
+
+\textbf{Q: What does "Balance Health" mean?}\\
+A: It's a percentage indicator showing your financial health based on your spending patterns and balance.
+
+\textbf{Q: How often does the chart update?}\\
+A: The chart updates immediately when you add new transactions.
+
+\subsection{Settings and Customization Questions}
+
+\textbf{Q: Can I change the currency?}\\
+A: Yes, go to Settings → Currency to select your preferred currency.
+
+\textbf{Q: How many categories can I create?}\\
+A: There's no strict limit, but we recommend keeping it to 5-10 categories for better organization.
+
+\textbf{Q: What happens if I erase all data?}\\
+A: All transactions, categories, and settings will be permanently deleted. This action cannot be undone.
+
+% Keyboard Shortcuts and Quick Actions
+\section{Quick Reference Guide}
+
+\subsection{Common Actions}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Action} & \textbf{Steps} \\
+\hline
+Add Expense & Home → Add Transaction → Select Expense → Enter Details → Submit \\
+\hline
+Add Income & Home → Add Transaction → Select Income → Enter Details → Submit \\
+\hline
+View Balance Details & Home → Tap arrow on balance card \\
+\hline
+Open Settings & Home → Tap gear icon (top left) \\
+\hline
+Manage Categories & Settings → Categories \\
+\hline
+View Transaction History & Home → Scroll to Transaction History section \\
+\hline
+\end{tabular}
+\caption{Quick Action Reference}
+\end{table}
+
+\subsection{Transaction Form Fields}
+\begin{itemize}
+    \item \textbf{Transaction Type}: Expense or Income (required)
+    \item \textbf{Title}: Description of transaction (required)
+    \item \textbf{Amount}: Numeric value greater than 0 (required)
+    \item \textbf{Category}: Optional selection from available categories
+\end{itemize}
+
+\subsection{Color Coding Reference}
+\begin{itemize}
+    \item \textcolor{green}{\textbf{Green}}: Income transactions
+    \item \textcolor{blue}{\textbf{Blue}}: Expense transactions
+    \item \textcolor{red}{\textbf{Red}}: Negative amounts (expenses)
+    \item \textcolor{green}{\textbf{Green}}: Positive amounts (income)
+\end{itemize}
+
+% Support and Resources
+\section{Support and Additional Resources}
+
+\subsection{Getting Help}
+If you need assistance:
+\begin{itemize}
+    \item Review this user manual
+    \item Check the FAQ section
+    \item Visit the GitHub repository for updates and community support
+    \item Report issues through the app's feedback mechanism
+\end{itemize}
+
+\subsection{Useful Links}
+\begin{itemize}
+    \item \textbf{GitHub Repository}: Access through Settings → GitHub
+    \item \textbf{App Updates}: Check your app store for the latest version
+    \item \textbf{Documentation}: Technical documentation available in the project repository
+\end{itemize}
+
+\subsection{Feedback and Suggestions}
+We value your feedback! You can:
+\begin{itemize}
+    \item Share suggestions through the GitHub repository
+    \item Report bugs or issues
+    \item Request new features
+    \item Contribute to the project
+\end{itemize}
+
+% Conclusion
+\section{Conclusion}
+
+Congratulations! You now have all the knowledge you need to effectively use SpenZ for managing your personal finances. Remember:
+
+\begin{itemize}
+    \item Add transactions regularly for accurate tracking
+    \item Review your spending patterns weekly
+    \item Use categories to organize your finances
+    \item Take advantage of the analytics to make informed decisions
+    \item Keep your app updated for the best experience
+\end{itemize}
+
+SpenZ is designed to make financial management simple and intuitive. With regular use, you'll gain better insights into your spending habits and improve your financial health.
+
+\vspace{1cm}
+
+\textit{Thank you for choosing SpenZ! We hope this application helps you achieve your financial goals.}
+
+\vspace{0.5cm}
+
+\textbf{Happy Tracking!}
+
+\end{document}
+

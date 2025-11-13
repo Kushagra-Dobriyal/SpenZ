@@ -1,0 +1,627 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+
+% Page margins
+\geometry{margin=1in}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={SpenZ Documentation},
+    pdfauthor={Your Name}
+}
+
+% Code listing style
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+    tabsize=2
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{SpenZ - Personal Expense Tracker}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{Documentation v1.0}
+
+% Title formatting
+\titleformat{\section}
+{\Large\bfseries\color{blue!70!black}}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\large\bfseries\color{blue!50!black}}
+{\thesubsection}{1em}{}
+
+% Title page
+\title{
+    \vspace{2cm}
+    \Huge\textbf{SpenZ}\\
+    \vspace{0.5cm}
+    \Large Personal Expense Tracker\\
+    \vspace{0.5cm}
+    \large Technical Documentation
+    \vspace{2cm}
+}
+
+\author{
+    Your Name\\
+    \texttt{your.email@example.com}
+}
+
+\date{\today}
+
+\begin{document}
+
+% Title page
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+% Abstract
+\begin{abstract}
+    \noindent
+    SpenZ is a modern, cross-platform personal expense tracking application developed using Flutter framework. The application provides users with an intuitive interface to manage their financial transactions, track income and expenses, visualize spending patterns through interactive charts, and maintain a comprehensive overview of their financial status. This document provides a detailed technical overview of the application, including its architecture, features, implementation details, and usage guidelines. The application leverages local storage using Hive database for offline-first functionality, ensuring data privacy and availability without internet connectivity.
+\end{abstract}
+
+\vspace{1cm}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Introduction
+\section{Introduction}
+
+\subsection{Overview}
+SpenZ is a comprehensive expense tracking application designed to help users manage their personal finances effectively. Built with Flutter, the application offers a seamless experience across multiple platforms including Android, iOS, Web, Windows, macOS, and Linux. The application emphasizes simplicity, security, and user experience, providing essential financial management tools in an elegant and modern interface.
+
+\subsection{Objectives}
+The primary objectives of SpenZ include:
+\begin{itemize}
+    \item Providing an easy-to-use interface for recording income and expenses
+    \item Offering visual analytics to understand spending patterns
+    \item Maintaining real-time balance calculations
+    \item Ensuring data privacy through local storage
+    \item Supporting multiple transaction categories for better organization
+    \item Delivering a cross-platform solution with consistent user experience
+\end{itemize}
+
+\subsection{Target Audience}
+SpenZ is designed for individuals who want to:
+\begin{itemize}
+    \item Track daily expenses and income
+    \item Monitor spending habits
+    \item Maintain a personal budget
+    \item Analyze financial patterns over time
+    \item Manage finances without relying on cloud services
+\end{itemize}
+
+% Project Overview
+\section{Project Overview}
+
+\subsection{Application Description}
+SpenZ is a mobile-first expense tracking application that allows users to record, categorize, and analyze their financial transactions. The application features a clean Material Design 3 interface with frosted glass effects, making financial management both functional and visually appealing.
+
+\subsection{Key Capabilities}
+\begin{enumerate}
+    \item \textbf{Transaction Management}: Users can add, view, and delete income and expense transactions with timestamps
+    \item \textbf{Balance Tracking}: Real-time calculation and display of current balance based on all transactions
+    \item \textbf{Visual Analytics}: Interactive bar charts showing weekly spending patterns
+    \item \textbf{Category Management}: Customizable transaction categories with intelligent icon assignment
+    \item \textbf{Offline Functionality}: Complete offline operation using local Hive database
+    \item \textbf{Data Persistence}: Automatic saving of all transactions and settings
+\end{enumerate}
+
+% System Architecture
+\section{System Architecture}
+
+\subsection{Architecture Overview}
+SpenZ follows a clean architecture pattern with clear separation of concerns:
+
+\begin{itemize}
+    \item \textbf{Presentation Layer}: Flutter widgets and screens
+    \item \textbf{Business Logic Layer}: Provider-based state management
+    \item \textbf{Data Layer}: Hive database for local storage
+\end{itemize}
+
+\subsection{Component Structure}
+The application is organized into the following main components:
+
+\subsubsection{Data Models}
+\begin{itemize}
+    \item \texttt{ExpenseItem}: Core model representing a transaction with fields for name, date, amount, and type (income/expense)
+\end{itemize}
+
+\subsubsection{Data Management}
+\begin{itemize}
+    \item \texttt{ExpenseData}: Provider class managing transaction state and business logic
+    \item \texttt{HiveDataBase}: Database abstraction layer for Hive operations
+\end{itemize}
+
+\subsubsection{User Interface}
+\begin{itemize}
+    \item \texttt{HomeScreen}: Main dashboard displaying balance, charts, and transaction history
+    \item \texttt{AddTransactionPage}: Form for adding new transactions
+    \item \texttt{BalanceOverview}: Detailed financial breakdown screen
+    \item \texttt{Settings}: Configuration and category management
+\end{itemize}
+
+\subsubsection{Visualization}
+\begin{itemize}
+    \item \texttt{BarChart}: Weekly spending visualization using fl\_chart library
+\end{itemize}
+
+% Features
+\section{Features}
+
+\subsection{Core Features}
+
+\subsubsection{Transaction Management}
+Users can add transactions through an intuitive form interface that includes:
+\begin{itemize}
+    \item Transaction type selection (Income/Expense)
+    \item Title/description input
+    \item Amount entry with validation
+    \item Category selection from customizable list
+    \item Automatic timestamp assignment
+\end{itemize}
+
+\subsubsection{Balance Calculation}
+The application automatically calculates balance using the formula:
+\begin{equation}
+    \text{Balance} = \sum \text{Income} - \sum \text{Expenses}
+\end{equation}
+Balance is computed in real-time from all stored transactions, ensuring accuracy and eliminating the need for manual balance updates.
+
+\subsubsection{Visual Analytics}
+Weekly spending patterns are visualized through interactive bar charts that:
+\begin{itemize}
+    \item Display expenses grouped by day of week
+    \item Automatically scale to accommodate varying amounts
+    \item Provide visual feedback for spending trends
+    \item Support filtering by transaction type
+\end{itemize}
+
+\subsubsection{Smart Category Icons}
+The application intelligently assigns icons to categories based on keywords:
+\begin{itemize}
+    \item Food-related categories: Fast food icon
+    \item Education categories: School icon
+    \item Entertainment/OTT: Subscription icon
+    \item Default: Category icon
+\end{itemize}
+
+\subsubsection{Transaction History}
+A scrollable list displays all transactions with:
+\begin{itemize}
+    \item Category-based color coding (green for income, blue for expenses)
+    \item Formatted timestamps (time and date)
+    \item Transaction type indicators
+    \item Amount display with appropriate sign (+/-)
+\end{itemize}
+
+% Implementation Details
+\section{Implementation Details}
+
+\subsection{State Management}
+SpenZ uses the Provider pattern for state management, which provides:
+\begin{itemize}
+    \item Centralized state management through \texttt{ExpenseData} class
+    \item Reactive UI updates using \texttt{ChangeNotifier}
+    \item Efficient data flow with \texttt{Consumer} widgets
+    \item Separation of business logic from UI components
+\end{itemize}
+
+\subsection{Data Persistence}
+The application uses Hive, a lightweight NoSQL database, for local storage:
+
+\begin{itemize}
+    \item \textbf{Storage Boxes}: Two Hive boxes are used:
+    \begin{itemize}
+        \item \texttt{expense\_database}: Stores transaction data
+        \item \texttt{transactions}: Additional transaction storage
+    \end{itemize}
+    \item \textbf{Data Serialization}: Transaction objects are serialized and stored as key-value pairs
+    \item \textbf{Persistence Strategy}: All data operations (add, update, delete) immediately persist to disk
+\end{itemize}
+
+\subsection{Weekly Amount Calculation}
+The application calculates weekly spending using the following algorithm:
+
+\begin{lstlisting}[language=Dart, caption=Weekly Amount Calculation]
+List<double> weeklyAmounts({String? typeFilter}) {
+  final list = List<double>.filled(7, 0.0);
+  
+  for (var tx in overallExpenseList) {
+    if (typeFilter != null && tx.type != typeFilter) continue;
+    
+    final amt = double.tryParse(tx.amount.toString()) ?? 0.0;
+    final weekday = tx.dateTime.weekday; // Mon = 1, ..., Sun = 7
+    final idx = weekday % 7; // Sun -> 0, Mon -> 1, ..., Sat -> 6
+    list[idx] += amt.abs();
+  }
+  
+  return list;
+}
+\end{lstlisting}
+
+\subsection{Chart Maximum Calculation}
+The chart automatically calculates appropriate maximum Y-axis values:
+
+\begin{lstlisting}[language=Dart, caption=Chart Max Y Calculation]
+double computeChartMaxY([List<double>? values]) {
+  final vals = values ?? weeklyAmounts();
+  if (vals.isEmpty) return 100.0;
+  double maxVal = vals.reduce((a, b) => a > b ? a : b);
+  if (maxVal <= 0) return 100.0;
+  final padded = maxVal * 1.2;
+  final magnitude = pow(10, padded.floor().toString().length - 1).toDouble();
+  return (padded / magnitude).ceilToDouble() * magnitude;
+}
+\end{lstlisting}
+
+\subsection{Transaction Normalization}
+All transaction amounts are normalized to positive values during storage, with the transaction type (income/expense) determining the sign in calculations:
+
+\begin{lstlisting}[language=Dart, caption=Transaction Normalization]
+void addExpense(ExpenseItem newExpense) {
+  final amt = double.tryParse(newExpense.amount) ?? 0.0;
+  final normalized = ExpenseItem(
+    name: newExpense.name,
+    dateTime: newExpense.dateTime,
+    amount: amt.abs().toString(),
+    type: 'expense',
+  );
+  overallExpenseList.add(normalized);
+  db.saveData(overallExpenseList);
+  notifyListeners();
+}
+\end{lstlisting}
+
+% Technology Stack
+\section{Technology Stack}
+
+\subsection{Framework and Language}
+\begin{itemize}
+    \item \textbf{Flutter}: Cross-platform UI framework (version >=2.19.6)
+    \item \textbf{Dart}: Programming language (version >=2.19.6)
+\end{itemize}
+
+\subsection{Key Dependencies}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Package} & \textbf{Purpose} \\
+\hline
+provider & State management \\
+hive & Local NoSQL database \\
+hive\_flutter & Flutter integration for Hive \\
+fl\_chart & Chart visualization library \\
+google\_fonts & Custom font support \\
+http & HTTP client for API calls \\
+simple\_icons & Icon library \\
+url\_launcher & URL launching functionality \\
+\hline
+\end{tabular}
+\caption{Key Dependencies}
+\end{table}
+
+\subsection{Development Tools}
+\begin{itemize}
+    \item Android Studio / VS Code (IDE)
+    \item Flutter SDK
+    \item Dart SDK
+    \item Platform-specific SDKs (Android SDK, Xcode for iOS)
+\end{itemize}
+
+% Installation Guide
+\section{Installation Guide}
+
+\subsection{Prerequisites}
+Before installing SpenZ, ensure the following are installed:
+
+\begin{enumerate}
+    \item \textbf{Flutter SDK} (version >=2.19.6)
+    \begin{itemize}
+        \item Download from \url{https://flutter.dev/docs/get-started/install}
+        \item Add Flutter to system PATH
+        \item Verify installation: \texttt{flutter doctor}
+    \end{itemize}
+    
+    \item \textbf{Dart SDK} (included with Flutter)
+    
+    \item \textbf{Platform-specific tools}:
+    \begin{itemize}
+        \item Android: Android Studio with Android SDK
+        \item iOS: Xcode (macOS only)
+        \item Web: Chrome browser
+        \item Desktop: Platform-specific build tools
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Installation Steps}
+
+\subsubsection{1. Clone Repository}
+\begin{lstlisting}[language=bash]
+git clone <repository-url>
+cd SpenZ
+\end{lstlisting}
+
+\subsubsection{2. Install Dependencies}
+\begin{lstlisting}[language=bash]
+flutter pub get
+\end{lstlisting}
+
+\subsubsection{3. Run Application}
+\begin{lstlisting}[language=bash]
+# Run on connected device/emulator
+flutter run
+
+# Run on specific platform
+flutter run -d chrome        # Web
+flutter run -d windows       # Windows
+flutter run -d macos         # macOS
+\end{lstlisting}
+
+\subsubsection{4. Build Application}
+\begin{lstlisting}[language=bash]
+# Android APK
+flutter build apk
+
+# Android App Bundle
+flutter build appbundle
+
+# iOS
+flutter build ios
+
+# Web
+flutter build web
+
+# Windows
+flutter build windows
+
+# macOS
+flutter build macos
+
+# Linux
+flutter build linux
+\end{lstlisting}
+
+% Usage Guide
+\section{Usage Guide}
+
+\subsection{Getting Started}
+
+\subsubsection{First Launch}
+\begin{enumerate}
+    \item Launch the SpenZ application
+    \item The home screen displays with an initial balance of ₹0.00
+    \item Navigate through the app using the bottom navigation bar
+\end{enumerate}
+
+\subsubsection{Adding Transactions}
+\begin{enumerate}
+    \item Tap the floating action button or navigate to "Add Transaction"
+    \item Select transaction type: Income or Expense
+    \item Enter transaction title/description
+    \item Enter amount (must be greater than 0)
+    \item Select a category from available options
+    \item Tap "Add Transaction" button
+    \item Transaction is saved and balance updates automatically
+\end{enumerate}
+
+\subsubsection{Viewing Balance}
+\begin{itemize}
+    \item Current balance is displayed prominently on the home screen
+    \item Balance updates in real-time as transactions are added or deleted
+    \item Tap the arrow icon to view detailed balance overview
+\end{itemize}
+
+\subsubsection{Analyzing Spending}
+\begin{itemize}
+    \item Weekly spending chart is displayed on the home screen
+    \item Chart shows expenses grouped by day of week
+    \item Bars represent total spending for each day
+    \item Chart automatically scales based on spending amounts
+\end{itemize}
+
+\subsubsection{Managing Categories}
+\begin{enumerate}
+    \item Open Settings from the home screen
+    \item Navigate to Categories section
+    \item Add, edit, or delete categories
+    \item Categories are immediately available for transaction entry
+\end{enumerate}
+
+\subsection{Transaction History}
+\begin{itemize}
+    \item All transactions are listed in reverse chronological order
+    \item Each transaction shows:
+    \begin{itemize}
+        \item Category icon with color coding
+        \item Transaction name
+        \item Date and time
+        \item Transaction type (Credited/Debited)
+        \item Amount with appropriate sign
+    \end{itemize}
+    \item Transactions can be deleted by long-pressing (if implemented)
+\end{itemize}
+
+% Screenshots
+\section{Screenshots}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{screenshots/home_screen.png}
+\caption{Home Screen - Balance and Transaction Overview}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{screenshots/add_transaction.png}
+\caption{Add Transaction Screen}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{screenshots/balance_overview.png}
+\caption{Balance Overview Screen}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{screenshots/charts.png}
+\caption{Weekly Spending Chart}
+\end{figure}
+
+\textit{Note: Replace placeholder images with actual screenshots of the application.}
+
+% Future Enhancements
+\section{Future Enhancements}
+
+Potential improvements and features for future versions:
+
+\begin{itemize}
+    \item \textbf{Data Export}: Export transactions to CSV or PDF format
+    \item \textbf{Cloud Sync}: Optional cloud backup and synchronization
+    \item \textbf{Budget Management}: Set and track spending budgets by category
+    \item \textbf{Recurring Transactions}: Schedule recurring income/expenses
+    \item \textbf{Multi-Currency Support}: Support for different currencies
+    \item \textbf{Advanced Analytics}: Monthly/yearly reports and trends
+    \item \textbf{Receipt Scanning}: OCR-based receipt scanning and extraction
+    \item \textbf{Expense Goals}: Set savings goals and track progress
+    \item \textbf{Data Visualization}: Additional chart types (pie charts, line graphs)
+    \item \textbf{Search and Filter}: Search transactions and filter by date range or category
+\end{itemize}
+
+% Conclusion
+\section{Conclusion}
+
+SpenZ represents a modern approach to personal expense tracking, combining ease of use with powerful features. The application successfully delivers on its core objectives of providing an intuitive interface for financial management while maintaining user privacy through local storage. The use of Flutter ensures a consistent experience across all platforms, while the clean architecture makes the codebase maintainable and extensible.
+
+The application demonstrates effective use of modern mobile development practices, including state management with Provider, local data persistence with Hive, and responsive UI design. With its current feature set, SpenZ provides a solid foundation for personal finance management, with ample room for future enhancements based on user feedback and requirements.
+
+% References
+\section{References}
+
+\begin{itemize}
+    \item Flutter Documentation: \url{https://flutter.dev/docs}
+    \item Dart Language Documentation: \url{https://dart.dev/guides}
+    \item Provider Package: \url{https://pub.dev/packages/provider}
+    \item Hive Database: \url{https://pub.dev/packages/hive}
+    \item FL Chart Library: \url{https://pub.dev/packages/fl_chart}
+    \item Material Design 3: \url{https://m3.material.io/}
+\end{itemize}
+
+% Appendix
+\appendix
+\section{Project Structure}
+\label{app:structure}
+
+\begin{verbatim}
+SpenZ/
+├── lib/
+│   ├── API/              # API integrations
+│   │   └── number_fact.dart
+│   ├── Charts/           # Chart components
+│   │   ├── bar_chart.dart
+│   │   ├── bar_data.dart
+│   │   └── each_data.dart
+│   ├── Data/             # Data models and database
+│   │   ├── Expense_data.dart
+│   │   └── hive_database.dart
+│   ├── Design/           # UI components
+│   │   └── FrostedGlass.dart
+│   ├── Model/            # Data models
+│   │   └── Expense_item.dart
+│   ├── Screens/          # App screens
+│   │   ├── addTransactionPage.dart
+│   │   ├── Balance_Overview.dart
+│   │   ├── Home_Screen.dart
+│   │   ├── Login_Page.dart
+│   │   ├── Second_Screen.dart
+│   │   ├── Settings.dart
+│   │   ├── tabs_manager.dart
+│   │   └── Settings/
+│   │       └── Categories.dart
+│   ├── utils.dart
+│   └── main.dart         # App entry point
+├── assets/               # Images and resources
+├── android/              # Android platform files
+├── ios/                  # iOS platform files
+├── web/                  # Web platform files
+├── windows/              # Windows platform files
+├── macos/                # macOS platform files
+├── linux/                # Linux platform files
+├── pubspec.yaml          # Dependencies and configuration
+└── README.md             # Project documentation
+\end{verbatim}
+
+\section{Code Examples}
+\label{app:code}
+
+\subsection{ExpenseItem Model}
+\begin{lstlisting}[language=Dart, caption=ExpenseItem Model]
+class ExpenseItem {
+  final String name;
+  final DateTime dateTime;
+  final String amount;
+  final String type; // "income" or "expense"
+
+  ExpenseItem({
+    required this.name,
+    required this.dateTime,
+    required this.amount,
+    required this.type,
+  });
+}
+\end{lstlisting}
+
+\subsection{Balance Calculation}
+\begin{lstlisting}[language=Dart, caption=Balance Calculation Methods]
+double sumIncome() {
+  return overallExpenseList
+      .where((t) => t.type == 'income')
+      .fold(0.0, (s, t) => s + (double.tryParse(t.amount) ?? 0.0).abs());
+}
+
+double sumExpense() {
+  return overallExpenseList
+      .where((t) => t.type == 'expense')
+      .fold(0.0, (s, t) => s + (double.tryParse(t.amount) ?? 0.0).abs());
+}
+
+double computeBalance() {
+  return sumIncome() - sumExpense();
+}
+\end{lstlisting}
+
+\end{document}
+
