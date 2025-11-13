@@ -127,7 +127,21 @@ lib/
 
 ## 🎨 Screenshots
 
-> 📸 *Screenshots coming soon!*
+<div align="center">
+
+### Home Screen
+![Home Screen](screenshots/home_screen.png)
+*Main dashboard showing balance, weekly spending chart, and transaction history*
+
+### Balance Overview
+![Balance Overview](screenshots/balance_overview.png)
+*Detailed financial breakdown with AI insights, spending analytics, and balance health indicator*
+
+### Settings
+![Settings](screenshots/settings.png)
+*Customizable settings including categories, security options, and data management*
+
+</div>
 
 ---
 
